@@ -3,7 +3,13 @@ const db = require('../../database/db');
 const resolvers = {
     Query: {
         // 2.3 - Consultas a tablas
-        getPoets: async () => await db.select().table('Poet'),
+        getPoets: async (_, { first_name }) => {
+            const query = db.select().table('Poet');
+            if (first_name) {
+                query.where('first_name', 'like', `%${first_name}%`);
+            }
+            return await query;
+        },
         getPoems: async () => await db.select().table('Poem'),
         getCustomers: async () => await db.select().table('Customer'),
 

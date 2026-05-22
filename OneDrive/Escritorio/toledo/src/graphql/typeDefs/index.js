@@ -60,7 +60,7 @@ const typeDefs = gql`
     }
 
     type Query {
-        getPoets: [Poet]
+        getPoets(first_name: String): [Poet]
         getPoems: [Poem]
         getCustomers: [Customer]
         spPoetPoem: [PoetPoemView]
